@@ -1,0 +1,21 @@
+{
+  "name": "pckg",
+  "version": "1.0.0",
+  "description": "It is my first try to make a discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "dnyyy",
+  "license": "ISC",
+  "keywords": [],
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.7.0"
+  }
+}
