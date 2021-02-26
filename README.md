@@ -1,6 +1,6 @@
 # Discord bot a magyar koronavírus adatok lekérésére (Discord bot for Hungary covid data):
 
-> Megadott utasításokkal lekérhetőek az éppen aktuális koronavírus adatok Magyaroszágról. Utasítások listájához használja a **!covid help** parancsot. (For spesific commands you can get the actual covid data from Hungary. For the list of commands use the following command: **!covid help**
+> Megadott utasításokkal lekérhetőek az éppen aktuális koronavírus adatok Magyaroszágról. Utasítások listájához használja a **!covid help** parancsot. (For spesific commands you can get the actual covid data from Hungary. For the list of commands use the following command: **!covid help**)
 
 ## Parancsok (Commands):
    * **!covid**: egy kisebb ismertető a botról (description about the bot).
