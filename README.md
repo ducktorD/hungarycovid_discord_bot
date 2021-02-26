@@ -4,6 +4,7 @@
 
 ## Parancsok (Commands):
    * **!covid**: egy kisebb ismertető a botról (description about the bot).
+   * **!covid github**: github repository.
    * **!covid site**: koronavírus adatokat részletező weboldalam (my website about Hungarian corona virus data).
    * **!covid infected today**: mai új fertőzöttek a száma.
    * **!covid infected**: azon emberek száma akik eddig elkapták a vírust.

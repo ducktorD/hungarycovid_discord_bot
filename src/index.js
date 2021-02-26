@@ -28,6 +28,7 @@ client.on('message', async (msg) => {
                 // (a frissítés idejét is kiírja, mivel lehet, hogy a mai nap adatai még nem elérhetőek)
                 const commands = `Koronavírus parancsok:
                     * __**${virusFlag}**__: ismertető.
+                    * __**${virusFlag} github**__: github repository.
                     * __**${virusFlag} site**__: koronavírus adatokat részletező weboldalam.
                     * __**${virusFlag} infected today**__: mai új fertőzöttek a száma.
                     * __**${virusFlag} infected**__: azon emberek száma akik eddig elkapták a vírust.
@@ -41,6 +42,10 @@ client.on('message', async (msg) => {
                     * __**${virusFlag} all**__: bővebb leírás az aktuális adatokról.
                 `;
                 msg.channel.send(commands.replace(/ +(?= )/g, '\t'));
+                break;
+            }
+            case 'github': {
+                msg.channel.send('Github repository: https://github.com/ducktorD/hungarycovid_discord_bot');
                 break;
             }
             case 'site': {
