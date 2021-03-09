@@ -32,6 +32,8 @@ client.on('message', async (msg) => {
                     ${ducktorDEmojis || '*'} __**${virusFlag}**__: ismertető.
                     ${ducktorDEmojis || '*'} __**${virusFlag} github**__: github repository.
                     ${ducktorDEmojis || '*'} __**${virusFlag} site**__: koronavírus adatokat részletező weboldalam.
+                    ${ducktorDEmojis || '*'} __**${virusFlag} vaccinated today**__: mai napon beoltott emberek száma.
+                    ${ducktorDEmojis || '*'} __**${virusFlag} vaccinated**__: eddig beoltottak száma.
                     ${ducktorDEmojis || '*'} __**${virusFlag} infected today**__: mai új fertőzöttek a száma.
                     ${ducktorDEmojis || '*'} __**${virusFlag} infected**__: azon emberek száma akik eddig elkapták a vírust.
                     ${ducktorDEmojis || '*'} __**${virusFlag} tested today**__: mai napon elvégzett mintavételek.
@@ -52,6 +54,16 @@ client.on('message', async (msg) => {
             }
             case 'site': {
                 msg.channel.send(`${ducktorDEmojis} Több koronavírussal kapcsolatos részletekért látogasd meg a weboldalam:\nhttps://hungarycovid.vercel.app`);
+                break;
+            }
+            case 'vaccinated today': {
+                const covidDatas = await getCovidDatas();
+                msg.channel.send(`${ducktorDEmojis} (${formatDate(covidDatas.lastUpdateInHungary)})\nMai napon beoltottak száma Magyarországon: ${formatNumber(covidDatas.covid.vaccinatedToday)}`);
+                break;
+            }
+            case 'vaccinated': {
+                const covidDatas = await getCovidDatas();
+                msg.channel.send(`${ducktorDEmojis} (${formatDate(covidDatas.lastUpdateInHungary)})\nÖsszesen beoltottak száma Magyarországon: ${formatNumber(covidDatas.covid.vaccinated)}`);
                 break;
             }
             case 'infected today': {
@@ -101,10 +113,10 @@ client.on('message', async (msg) => {
             }
             case 'all': {
                 const covidDatas = await getCovidDatas();
-                const { infectedToday, infected, testedToday, tested, deceasedToday, deceased, quarantined, recovered, activeInfected } = covidDatas.covid;
+                const { infectedToday, infected, testedToday, tested, deceasedToday, deceased, quarantined, recovered, activeInfected, vaccinated, vaccinatedToday } = covidDatas.covid;
                 const { lastUpdateInHungary } = covidDatas;
                 // console.log('infectedToday', infectedToday, 'infected', infected, 'testedToday', testedToday, 'tested', tested, 'deceasedToday', deceasedToday, 'deceased', deceased, 'quarantined', quarantined, 'recovered', recovered, 'activeInfected', activeInfected);
-                msg.channel.send(`${ducktorDEmojis} A mai napon (${formatDate(lastUpdateInHungary)}) újabb ${formatNumber(infectedToday)} beteget azonosítottak Magyarországon, így a fertőzöttek száma ${formatNumber(infected)} főre, míg az aktív betegek száma ${formatNumber(activeInfected)} főre változott és újabb ${formatNumber(deceasedToday)} ember vesztette életét, mellyel eddig összesen ${formatNumber(deceased)} áldozatot követelt a vírus. Továbbá a mai napon ${formatNumber(testedToday)} mintavételre került sor és ezzel eddig összesen ${formatNumber(tested)} ember lett tesztelve. A gyógyultak száma jelenleg ${formatNumber(recovered)} főre nött, illetve ${formatNumber(quarantined)} fő van hatósági házi karanténban.`);
+                msg.channel.send(`${ducktorDEmojis} A mai napon (${formatDate(lastUpdateInHungary)}) újabb ${formatNumber(infectedToday)} beteget azonosítottak Magyarországon, így a fertőzöttek száma ${formatNumber(infected)} főre, míg az aktív betegek száma ${formatNumber(activeInfected)} főre változott és újabb ${formatNumber(deceasedToday)} ember vesztette életét, mellyel eddig összesen ${formatNumber(deceased)} áldozatot követelt a vírus. Továbbá a mai napon ${formatNumber(testedToday)} mintavételre került sor és ezzel eddig összesen ${formatNumber(tested)} ember lett tesztelve. A gyógyultak száma jelenleg ${formatNumber(recovered)} főre nött, illetve ${formatNumber(quarantined)} fő van hatósági házi karanténban. A mai napon ${formatNumber(vaccinatedToday)} ember kapta meg valamelyik oltóanyag egyikét, ezzel összesen eddig ${formatNumber(vaccinated)} ember lett beoltva.`);
                 break;
             }
             default: {
